@@ -26,6 +26,64 @@ attempts at completing the competition, each demonstrating more success than
 the last.
 
 ## Use
+### 0. Clone Repository
+First, you must clone the repository.
+
+If you have git, you can use it directly, otherwise, you can use Docker to clone it for you:
+
+```bash
+# with git
+git clone https://github.com/janisbent/ectf-workshop.git
+# without git
+docker run -v ./workshop:/workshop alpine/git clone https://github.com/janisbent/ectf-workshop.git /workshop
+```
+
+
+```powershell
+mkdir -p ~\Desktop\workshop
+cd ~\Desktop\workshop
+```
+
+```powershell
+$design = "insecure"
+$serial = "COM4"
+```
+
+```powershell
+python -m pip install .\src\$design\design .\tools
+docker build -t $design-decoder src\$design\decoder
+mkdir $design
+cd $design
+```
+
+```powershell
+python -m ectf25_design.gen_secrets global.secrets 1 2 3 4
+```
+
+```powershell
+docker run --rm -v C:\Users\Student\Desktop\workshop\src\$design\decoder:/decoder -v .\global.secrets:/global.secrets -v .\0xdeadbeef_build:/out -e DECODER_ID=0xdeadbeef $design-decoder
+```
+
+```powershell
+python -m ectf25_design.gen_subscription always_1.sub 0xdeadbeef 0 0xffffffffffffffff 1
+```
+
+```powershell
+python -m ectf25.utils.flash .\desdbeef.build\max78000.bin $serial
+```
+
+```powershell
+python -m ectf25_design.tv.list $serial
+```
+
+```powershell
+python -m ectf25_design.tv.subscribe .\always_1.sub $serial
+```
+
+```powershell
+python -m ectf25_design.utils.tester --secrets .\global.secrets --port $serial --delay 0.5 rand --channels 1
+```
+
 ### 1. Build Enviornment
 Each design can be built and run independently. To build the environment for a
 design, run:
