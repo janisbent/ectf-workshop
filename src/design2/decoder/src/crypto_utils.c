@@ -1,5 +1,4 @@
 /**
- * @author GT1: Nicolas Amato
  * 
  * This file defines a common cryptographic interface for AES, SHA256, and HMAC.
  */

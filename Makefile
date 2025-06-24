@@ -10,4 +10,4 @@ $(DESIGNS):
 	mkdir -p target/$@
 
 clean:
-	rm -rf src/*/.venv target src/*/design/*.egg-info src/*/decoder/build
+	rm -rf src/*/.venv target src/*/design/build src/*/design/*.egg-info src/*/decoder/build

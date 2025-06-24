@@ -96,7 +96,7 @@ def parse_args():
     parser.add_argument(
         "start", type=lambda x: int(x, 0), help="Subscription start timestamp"
     )
-    parser.add_argument("end", type=int, help="Subscription end timestamp")
+    parser.add_argument("end", type=lambda x: int(x, 0), help="Subscription end timestamp")
     parser.add_argument("channel", type=int, help="Channel to subscribe to")
     return parser.parse_args()
 
